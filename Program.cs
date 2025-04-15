@@ -36,4 +36,6 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+app.MapFallbackToPage("/Auth/Login");
+
 app.Run();

@@ -1,0 +1,33 @@
+@page
+@model LibrarySystem.Pages.LoansModel
+
+<h1>All Book Loans</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Book</th>
+            <th>Loan Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Loans != null && Model.Loans.Any())
+    {
+        foreach (var loan in Model.Loans)
+        {
+            <tr>
+                <td>@loan.User.FullName</td>
+                <td>@loan.Book.Title</td>
+                <td>@loan.BorrowDate.ToShortDateString()</td>
+                <td>@loan.ReturnDate?.ToShortDateString() ?? "Not returned"</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr><td colspan="4">No loans found.</td></tr>
+    }
+    </tbody>
+</table>

@@ -12,5 +12,6 @@ namespace LibrarySystem.Data
         public DbSet<Author> Authors => Set<Author>();
         public DbSet<Genre> Genres => Set<Genre>();
         public DbSet<User> Users => Set<User>();
+        public DbSet<Loan> Loans => Set<Loan>(); // ✅ Add this line
     }
 }

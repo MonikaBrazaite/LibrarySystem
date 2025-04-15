@@ -26,6 +26,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/monikabrazaite/LibrarySystem
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/monikabrazaite/LibrarySystem/Pages/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXV0aC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/monikabrazaite/LibrarySystem/Pages/Auth/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXV0aC9TaWduVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/monikabrazaite/LibrarySystem/Pages/Books.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQm9va3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -36,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/monikabrazaite/LibrarySystem/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/monikabrazaite/LibrarySystem/Pages/Loans.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9hbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/monikabrazaite/LibrarySystem/Pages/Privacy.cshtml]

@@ -98,6 +98,32 @@ namespace LibrarySystem.Data
 
             context.Books.AddRange(books);
             context.SaveChanges();
-        }
+
+
+var loans = new List<Loan>
+{
+    new Loan { UserId = users[0].Id, BookId = books[0].Id, BorrowDate = DateTime.Now.AddDays(-14), ReturnDate = DateTime.Now.AddDays(-5) },
+    new Loan { UserId = users[1].Id, BookId = books[1].Id, BorrowDate = DateTime.Now.AddDays(-10), ReturnDate = DateTime.Now.AddDays(-2) },
+    new Loan { UserId = users[2].Id, BookId = books[2].Id, BorrowDate = DateTime.Now.AddDays(-8), ReturnDate = null },
+    new Loan { UserId = users[3].Id, BookId = books[3].Id, BorrowDate = DateTime.Now.AddDays(-20), ReturnDate = DateTime.Now.AddDays(-1) },
+    new Loan { UserId = users[0].Id, BookId = books[4].Id, BorrowDate = DateTime.Now.AddDays(-12), ReturnDate = null },
+    new Loan { UserId = users[1].Id, BookId = books[5].Id, BorrowDate = DateTime.Now.AddDays(-7), ReturnDate = null },
+    new Loan { UserId = users[2].Id, BookId = books[6].Id, BorrowDate = DateTime.Now.AddDays(-6), ReturnDate = null },
+    new Loan { UserId = users[3].Id, BookId = books[7].Id, BorrowDate = DateTime.Now.AddDays(-3), ReturnDate = null },
+    new Loan { UserId = users[0].Id, BookId = books[8].Id, BorrowDate = DateTime.Now.AddDays(-9), ReturnDate = DateTime.Now },
+    new Loan { UserId = users[1].Id, BookId = books[9].Id, BorrowDate = DateTime.Now.AddDays(-2), ReturnDate = null },
+    new Loan { UserId = users[2].Id, BookId = books[10].Id, BorrowDate = DateTime.Now.AddDays(-13), ReturnDate = DateTime.Now.AddDays(-4) },
+    new Loan { UserId = users[3].Id, BookId = books[11].Id, BorrowDate = DateTime.Now.AddDays(-11), ReturnDate = null },
+    new Loan { UserId = users[0].Id, BookId = books[12].Id, BorrowDate = DateTime.Now.AddDays(-15), ReturnDate = DateTime.Now.AddDays(-6) },
+    new Loan { UserId = users[1].Id, BookId = books[13].Id, BorrowDate = DateTime.Now.AddDays(-4), ReturnDate = null },
+    new Loan { UserId = users[2].Id, BookId = books[14].Id, BorrowDate = DateTime.Now.AddDays(-1), ReturnDate = null }
+};
+
+context.Loans.AddRange(loans);
+context.SaveChanges();
+
+
+
     }
+}
 }
