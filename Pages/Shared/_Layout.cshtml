@@ -21,6 +21,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Books">All Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Loans">Loans</a>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <ul class="navbar-nav">
                         @if (string.IsNullOrEmpty(user))
@@ -53,17 +67,18 @@
         {
             <div class="bg-light p-3 border-end" style="width: 220px; min-height: 85vh;">
                 <h6 class="text-muted">📚 Menu</h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-page="/Loans">My Loans</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-page="/Auth/Profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" asp-page="/Auth/Logout">Logout</a>
-                    </li>
-                </ul>
+              <ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link" asp-page="/MyLoans">📚 My Loans</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-page="/Auth/Profile">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-danger" asp-page="/Auth/Logout">Logout</a>
+    </li>
+</ul>
+
             </div>
         }
 
