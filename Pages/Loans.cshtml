@@ -3,6 +3,12 @@
 
 <h1>All Book Loans</h1>
 
+<!-- ✅ Show export success message -->
+@if (TempData["ExportMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["ExportMessage"]</div>
+}
+
 <!-- 📄 Loan Creation Form -->
 <form method="post" class="mb-4">
     <div class="row g-2">
@@ -19,6 +25,13 @@
             <button type="submit" class="btn btn-primary w-100">Create Loan</button>
         </div>
     </div>
+</form>
+
+<!-- 📤 Export Loan History Button -->
+<form method="post" asp-page-handler="Export">
+    <button type="submit" class="btn btn-outline-secondary mb-3">
+        📤 Export Loan History
+    </button>
 </form>
 
 <!-- 📚 Loan List -->

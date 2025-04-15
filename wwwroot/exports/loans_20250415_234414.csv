@@ -1,0 +1,20 @@
+User,Book,Loan Date,Return Date
+Alice Johnson,1984,2025-04-01,2025-04-10
+Tom Rivers,Pride and Prejudice,2025-04-05,2025-04-13
+Lina Adams,Adventures of Huckleberry Finn,2025-04-07,Not returned
+Mike D.,Harry Potter and the Sorcerer's Stone,2025-03-26,2025-04-14
+Alice Johnson,Norwegian Wood,2025-04-03,Not returned
+Tom Rivers,Me Before You,2025-04-08,Not returned
+Lina Adams,The Night Circus,2025-04-09,Not returned
+Mike D.,Murder on the Orient Express,2025-04-12,Not returned
+Alice Johnson,The Hobbit,2025-04-06,2025-04-15
+Tom Rivers,Gone Girl,2025-04-13,Not returned
+Lina Adams,The Silent Patient,2025-04-02,2025-04-11
+Mike D.,Circe,2025-04-04,Not returned
+Alice Johnson,The Midnight Library,2025-03-31,2025-04-09
+Tom Rivers,It Ends With Us,2025-04-11,Not returned
+Lina Adams,Where the Crawdads Sing,2025-04-14,Not returned
+Ava Brown,The Shining,2025-04-15,Not returned
+vaidabraziene,Pride and Prejudice,2025-04-15,Not returned
+vaidabraziene,The Midnight Library,2025-04-15,Not returned
+vaidabraziene,Murder on the Orient Express,2025-04-15,Not returned

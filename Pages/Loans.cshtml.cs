@@ -11,10 +11,12 @@ namespace LibrarySystem.Pages
     public class LoansModel : PageModel
     {
         private readonly LibraryContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public LoansModel(LibraryContext context)
+        public LoansModel(LibraryContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         public List<Loan>? Loans { get; set; }
@@ -25,6 +27,11 @@ namespace LibrarySystem.Pages
         public int SelectedBookId { get; set; }
 
         public void OnGet()
+        {
+            LoadData();
+        }
+
+        private void LoadData()
         {
             Loans = _context.Loans
                 .Include(l => l.Book)
@@ -54,7 +61,7 @@ namespace LibrarySystem.Pages
             if (user == null || SelectedBookId == 0)
             {
                 ModelState.AddModelError(string.Empty, "Invalid user or book selection.");
-                OnGet();
+                LoadData();
                 return Page();
             }
 
@@ -63,6 +70,31 @@ namespace LibrarySystem.Pages
             _context.SaveChanges();
 
             return RedirectToPage("/Loans");
+        }
+
+        public IActionResult OnPostExport()
+        {
+            var loans = _context.Loans
+                .Include(l => l.Book)
+                .Include(l => l.User)
+                .ToList();
+
+            var csvBuilder = new System.Text.StringBuilder();
+            csvBuilder.AppendLine("User,Book,Loan Date,Return Date");
+
+            foreach (var loan in loans)
+            {
+                csvBuilder.AppendLine($"{loan.User.FullName},{loan.Book.Title},{loan.BorrowDate:yyyy-MM-dd},{loan.ReturnDate?.ToString("yyyy-MM-dd") ?? "Not returned"}");
+            }
+
+            var folderPath = Path.Combine(_env.WebRootPath, "exports");
+            Directory.CreateDirectory(folderPath);
+
+            var filePath = Path.Combine(folderPath, $"loans_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+            System.IO.File.WriteAllText(filePath, csvBuilder.ToString());
+
+            TempData["ExportMessage"] = "Loan history exported!";
+            return RedirectToPage();
         }
     }
 }
