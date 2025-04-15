@@ -13,14 +13,20 @@ namespace LibrarySystem.Pages
             _logger = logger;
         }
 
+        public string? LoggedInUser { get; set; }
+
         public IActionResult OnGet()
         {
-            if (TempData["User"] == null)
+            var user = HttpContext.Session.GetString("User");
+
+            if (string.IsNullOrEmpty(user))
             {
                 return RedirectToPage("/Auth/Login");
             }
 
+            LoggedInUser = user;
             return Page();
         }
     }
 }
+

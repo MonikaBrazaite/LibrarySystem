@@ -1,5 +1,6 @@
-﻿@{
-    var user = TempData["User"] as string;
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var user = HttpContextAccessor.HttpContext?.Session.GetString("User");
 }
 
 <!DOCTYPE html>
@@ -67,18 +68,17 @@
         {
             <div class="bg-light p-3 border-end" style="width: 220px; min-height: 85vh;">
                 <h6 class="text-muted">📚 Menu</h6>
-              <ul class="nav flex-column">
-    <li class="nav-item">
-        <a class="nav-link" asp-page="/MyLoans">📚 My Loans</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-page="/Auth/Profile">Profile</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-danger" asp-page="/Auth/Logout">Logout</a>
-    </li>
-</ul>
-
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/MyLoans">📚 My Loans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Auth/Profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" asp-page="/Auth/Logout">Logout</a>
+                    </li>
+                </ul>
             </div>
         }
 

@@ -1,5 +1,6 @@
 using LibrarySystem.Data;
 using LibrarySystem.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,24 +17,28 @@ namespace LibrarySystem.Pages
 
         public List<LoanDisplay> LoanSummaries { get; set; } = new();
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            var userName = TempData["User"] as string;
+            var userName = HttpContext.Session.GetString("User");
 
-            if (!string.IsNullOrEmpty(userName))
+            if (string.IsNullOrEmpty(userName))
             {
-                var user = _context.Users.FirstOrDefault(u => u.FullName == userName);
-
-                if (user != null)
-                {
-                    var userLoans = _context.Loans
-                        .Include(l => l.Book)
-                        .Where(l => l.UserId == user.Id)
-                        .ToList();
-
-                    LoanSummaries = userLoans.Select(loan => new LoanDisplay(loan)).ToList();
-                }
+                return RedirectToPage("/Auth/Login");
             }
+
+            var user = _context.Users.FirstOrDefault(u => u.FullName == userName);
+
+            if (user != null)
+            {
+                var userLoans = _context.Loans
+                    .Include(l => l.Book)
+                    .Where(l => l.UserId == user.Id)
+                    .ToList();
+
+                LoanSummaries = userLoans.Select(loan => new LoanDisplay(loan)).ToList();
+            }
+
+            return Page();
         }
 
         // 🎨 Decorator: Enhances Loan with formatted info

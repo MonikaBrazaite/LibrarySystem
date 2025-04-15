@@ -35,7 +35,8 @@ namespace LibrarySystem.Pages.Auth
             }
 
             // Optional: store the name temporarily for display
-            TempData["User"] = user.FullName;
+            HttpContext.Session.SetString("User", user.FullName);
+
             return RedirectToPage("/Index");
         }
     }

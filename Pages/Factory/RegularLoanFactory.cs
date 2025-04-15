@@ -1,17 +1,16 @@
 using LibrarySystem.Models;
-using System;
 
-namespace LibrarySystem.Services.Factories
+namespace LibrarySystem.Factory
 {
-    public static class LoanFactory
+    public class RegularLoanFactory : ILoanFactory
     {
-        public static Loan CreateLoan(int userId, int bookId)
+        public Loan CreateLoan(int userId, int bookId)
         {
             return new Loan
             {
                 UserId = userId,
                 BookId = bookId,
-                BorrowDate = DateTime.Today,
+                BorrowDate = DateTime.Now,
                 ReturnDate = null
             };
         }

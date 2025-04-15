@@ -1,4 +1,5 @@
 using LibrarySystem.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,12 @@ builder.Services.AddRazorPages();
 // Register DbContext with SQLite
 builder.Services.AddDbContext<LibraryContext>(options =>
     options.UseSqlite("Data Source=library.db"));
+
+// ✅ Add Session support
+builder.Services.AddSession();
+
+// ✅ Register HttpContextAccessor for accessing session in Razor views/layout
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -32,10 +39,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession(); // ✅ Enable session before authorization
+
 app.UseAuthorization();
 
 app.MapRazorPages();
 
+// ✅ Optional: fallback to login if route not found
 app.MapFallbackToPage("/Auth/Login");
 
 app.Run();

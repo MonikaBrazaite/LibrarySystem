@@ -19,11 +19,7 @@ namespace LibrarySystem.Pages
 
         public List<Loan>? Loans { get; set; }
 
-        public List<SelectListItem> UserOptions { get; set; } = new();
         public List<SelectListItem> BookOptions { get; set; } = new();
-
-        [BindProperty]
-        public int SelectedUserId { get; set; }
 
         [BindProperty]
         public int SelectedBookId { get; set; }
@@ -33,14 +29,6 @@ namespace LibrarySystem.Pages
             Loans = _context.Loans
                 .Include(l => l.Book)
                 .Include(l => l.User)
-                .ToList();
-
-            UserOptions = _context.Users
-                .Select(u => new SelectListItem
-                {
-                    Value = u.Id.ToString(),
-                    Text = u.FullName
-                })
                 .ToList();
 
             BookOptions = _context.Books
@@ -54,13 +42,23 @@ namespace LibrarySystem.Pages
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            var userName = HttpContext.Session.GetString("User");
+
+            if (string.IsNullOrEmpty(userName))
             {
-                OnGet(); // Reload options
+                return RedirectToPage("/Auth/Login");
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.FullName == userName);
+
+            if (user == null || SelectedBookId == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid user or book selection.");
+                OnGet();
                 return Page();
             }
 
-            var loan = LoanFactory.CreateLoan(SelectedUserId, SelectedBookId);
+            var loan = LoanFactory.CreateLoan(user.Id, SelectedBookId);
             _context.Loans.Add(loan);
             _context.SaveChanges();
 

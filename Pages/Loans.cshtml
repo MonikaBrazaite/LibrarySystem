@@ -7,9 +7,8 @@
 <form method="post" class="mb-4">
     <div class="row g-2">
         <div class="col-md-5">
-            <select asp-for="SelectedUserId" asp-items="Model.UserOptions" class="form-select">
-                <option value="">-- Select User --</option>
-            </select>
+            <!-- 👤 Display logged-in user as readonly -->
+            <input type="text" class="form-control" value="@TempData["User"]" readonly />
         </div>
         <div class="col-md-5">
             <select asp-for="SelectedBookId" asp-items="Model.BookOptions" class="form-select">
