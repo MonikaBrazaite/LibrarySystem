@@ -3,6 +3,26 @@
 
 <h1>All Book Loans</h1>
 
+<!-- 📄 Loan Creation Form -->
+<form method="post" class="mb-4">
+    <div class="row g-2">
+        <div class="col-md-5">
+            <select asp-for="SelectedUserId" asp-items="Model.UserOptions" class="form-select">
+                <option value="">-- Select User --</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <select asp-for="SelectedBookId" asp-items="Model.BookOptions" class="form-select">
+                <option value="">-- Select Book --</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Create Loan</button>
+        </div>
+    </div>
+</form>
+
+<!-- 📚 Loan List -->
 <table class="table table-striped">
     <thead>
         <tr>
