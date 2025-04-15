@@ -38,7 +38,13 @@
             foreach (var book in Model.Books)
             {
                 <tr>
-                    <td>@book.Title</td>
+                    <td>
+                        @book.Title
+                        @if (book.Id == 0)
+                        {
+                            <span class="badge bg-info text-dark ms-2">External</span>
+                        }
+                    </td>
                     <td>@book.Author?.Name</td>
                     <td>@book.Genre?.Name</td>
                     <td>@book.YearPublished</td>
