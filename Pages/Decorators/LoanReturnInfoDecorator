@@ -1,0 +1,26 @@
+using LibrarySystem.Models;
+
+namespace LibrarySystem.Decorators
+{
+    public class LoanReturnInfoDecorator : ILoanDisplay
+    {
+        private readonly ILoanDisplay _innerDisplay;
+        private readonly Loan _loan;
+
+        public LoanReturnInfoDecorator(ILoanDisplay innerDisplay, Loan loan)
+        {
+            _innerDisplay = innerDisplay;
+            _loan = loan;
+        }
+
+        public string GetDisplayText()
+        {
+            var baseText = _innerDisplay.GetDisplayText();
+            var returnInfo = _loan.ReturnDate.HasValue
+                ? $" (Returned on {_loan.ReturnDate.Value.ToShortDateString()})"
+                : " (Not returned yet)";
+            
+            return baseText + returnInfo;
+        }
+    }
+}

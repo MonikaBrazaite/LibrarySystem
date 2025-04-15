@@ -14,7 +14,7 @@ namespace LibrarySystem.Pages
             _context = context;
         }
 
-        public List<Loan> Loans { get; set; } = new();
+        public List<LoanDisplay> LoanSummaries { get; set; } = new();
 
         public void OnGet()
         {
@@ -26,12 +26,33 @@ namespace LibrarySystem.Pages
 
                 if (user != null)
                 {
-                    Loans = _context.Loans
+                    var userLoans = _context.Loans
                         .Include(l => l.Book)
                         .Where(l => l.UserId == user.Id)
                         .ToList();
+
+                    LoanSummaries = userLoans.Select(loan => new LoanDisplay(loan)).ToList();
                 }
             }
+        }
+
+        // 🎨 Decorator: Enhances Loan with formatted info
+        public class LoanDisplay
+        {
+            private readonly Loan _loan;
+
+            public LoanDisplay(Loan loan)
+            {
+                _loan = loan;
+            }
+
+            public string BookTitle => _loan.Book?.Title ?? "Unknown";
+
+            public string BorrowDateFormatted => _loan.BorrowDate.ToString("yyyy-MM-dd");
+
+            public string ReturnDateFormatted => _loan.ReturnDate?.ToString("yyyy-MM-dd") ?? "Not returned";
+
+            public string Status => _loan.ReturnDate == null ? "📘 Still borrowed" : "✅ Returned";
         }
     }
 }
