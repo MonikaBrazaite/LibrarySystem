@@ -1,48 +1,107 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿/* General reset and typography */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding-bottom: 60px; /* Space for footer */
+  background-color: #f8f9fa;
+  color: #212529;
+}
 
+/* Navbar */
 a.navbar-brand {
   white-space: normal;
   text-align: center;
-  word-break: break-all;
+  word-break: break-word;
+  font-weight: bold;
+  color: #1b6ec2;
 }
 
-a {
-  color: #0077cc;
+.navbar-nav .nav-link {
+  color: #343a40 !important;
+  font-weight: 500;
 }
 
+.navbar-nav .nav-link:hover {
+  color: #1b6ec2 !important;
+}
+
+/* Buttons */
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.btn-primary:hover {
+  background-color: #155a9a;
+  border-color: #144f85;
+}
+
+/* Active nav pills */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
 
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background-color: white;
+  border: 1px solid #dee2e6;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+thead {
+  background-color: #e9ecef;
+}
+
+/* Borders */
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
 
+/* Shadows */
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  line-height: 60px;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+  color: #6c757d;
+}
+
+/* Utility */
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

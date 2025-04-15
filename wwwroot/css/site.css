@@ -1,5 +1,8 @@
+/* Base font sizing */
 html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,15 +11,118 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+body {
+  margin-bottom: 60px; /* space for footer */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+/* Navbar styles */
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-word;
+  font-weight: bold;
+  color: #1b6ec2;
 }
 
-body {
-  margin-bottom: 60px;
+.navbar-nav .nav-link {
+  color: #343a40 !important;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #1b6ec2 !important;
+}
+
+/* Buttons */
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.btn-primary:hover {
+  background-color: #155a9a;
+  border-color: #144f85;
+}
+
+/* Active nav pills */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background-color: white;
+  border: 1px solid #dee2e6;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+thead {
+  background-color: #e9ecef;
+}
+
+/* Utility borders and shadows */
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+/* Footer styles */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  line-height: 60px;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+  color: #6c757d;
+}
+
+/* Links */
+a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Accept policy button */
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
 }

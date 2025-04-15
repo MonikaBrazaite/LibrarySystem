@@ -1,0 +1,42 @@
+@page
+@model BooksModel
+
+<h1>All Books</h1>
+
+<!-- 🔍 Search Form -->
+<form method="get">
+    <input type="text" name="search" value="@Model.SearchTerm" placeholder="Search by title, author, or genre" class="form-control mb-3" />
+    <button type="submit" class="btn btn-primary mb-3">Search</button>
+</form>
+
+<!-- 📚 Books Table -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Books != null && Model.Books.Any())
+    {
+        foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author?.Name</td>
+                <td>@book.Genre?.Name</td>
+                <td>@book.YearPublished</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">No books found.</td>
+        </tr>
+    }
+    </tbody>
+</table>
