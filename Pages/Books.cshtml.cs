@@ -1,7 +1,8 @@
+using LibrarySystem.Data;
 using LibrarySystem.Models;
+using LibrarySystem.Strategies;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using LibrarySystem.Data;
 
 public class BooksModel : PageModel
 {
@@ -14,24 +15,38 @@ public class BooksModel : PageModel
 
     public List<Book> Books { get; set; } = new();
     public string? SearchTerm { get; set; }
+    public string? SearchType { get; set; }
 
-    public void OnGet(string? search)
+    public void OnGet(string? search, string? type)
     {
         SearchTerm = search;
+        SearchType = type;
 
-        var query = _context.Books
+        var booksQuery = _context.Books
             .Include(b => b.Author)
             .Include(b => b.Genre)
             .AsQueryable();
 
-        if (!string.IsNullOrEmpty(search))
+        if (!string.IsNullOrEmpty(search) && !string.IsNullOrEmpty(type))
         {
-            query = query.Where(b =>
-                b.Title.Contains(search) ||
-                b.Author.Name.Contains(search) ||
-                b.Genre.Name.Contains(search));
+            var searcher = new BookSearcher();
+
+            switch (type.ToLower())
+            {
+                case "author":
+                    searcher.SetStrategy(new AuthorSearchStrategy());
+                    break;
+                case "genre":
+                    searcher.SetStrategy(new GenreSearchStrategy());
+                    break;
+                default:
+                    searcher.SetStrategy(new TitleSearchStrategy());
+                    break;
+            }
+
+            booksQuery = searcher.Search(booksQuery, search);
         }
 
-        Books = query.ToList();
+        Books = booksQuery.ToList();
     }
 }
