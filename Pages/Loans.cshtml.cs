@@ -96,5 +96,30 @@ namespace LibrarySystem.Pages
             TempData["ExportMessage"] = "Loan history exported!";
             return RedirectToPage();
         }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            var loan = _context.Loans.FirstOrDefault(l => l.Id == id);
+            if (loan != null)
+            {
+                _context.Loans.Remove(loan);
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostReturn(int id)
+        {
+            var loan = _context.Loans.FirstOrDefault(l => l.Id == id);
+
+            if (loan != null && loan.ReturnDate == null)
+            {
+                loan.ReturnDate = DateTime.Now;
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage();
+        }
     }
 }

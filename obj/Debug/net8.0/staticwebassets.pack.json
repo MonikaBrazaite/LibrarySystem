@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
+      "Id": "/Users/monikabrazaite/LibrarySystem/wwwroot/exports/loans_20250415_234414.csv",
+      "PackagePath": "staticwebassets/exports/loans_20250415_234414.csv"
+    },
+    {
       "Id": "/Users/monikabrazaite/LibrarySystem/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
